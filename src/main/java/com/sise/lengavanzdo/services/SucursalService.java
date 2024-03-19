@@ -10,4 +10,5 @@ public interface SucursalService {
     sucursal insertarSucursal(sucursal sucursal);
     sucursal actualizarSucursal(sucursal sucursal);
     void darBajaSucursal(Integer id);
+    void tunana (Integer id);
 }
