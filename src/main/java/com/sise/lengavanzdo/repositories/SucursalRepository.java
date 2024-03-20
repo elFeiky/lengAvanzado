@@ -8,11 +8,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface SucursalRepository extends JpaRepository<sucursal,Integer> {
     @Modifying
     @Transactional
     @Query("UPDATE sucursal s set s.estadoAuditoria = '0' WHERE s.idSucursal = :id")
     void darBajaSucursal(@Param("id") Integer id);
-
+    List<sucursal> findByEstadoAuditoria(String estadoAuditoria);
+    sucursal findOneByIdSucursalAndEstadoAuditoria(Integer idSucursal, String estadoAuditoria);
 }
