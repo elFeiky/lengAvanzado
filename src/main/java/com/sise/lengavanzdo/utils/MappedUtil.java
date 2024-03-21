@@ -2,7 +2,6 @@ package com.sise.lengavanzdo.utils;
 
 import com.sise.lengavanzdo.entities.sucursal;
 import com.sise.lengavanzdo.payload.request.SucursalRequest;
-import com.sise.lengavanzdo.payload.responses.SucursalResponse;
 
 public class MappedUtil {
 
@@ -15,7 +14,7 @@ public class MappedUtil {
         sucursal.setImagienUrl(sucursalRequest.getImagenUrl());
         return sucursal;
     }
-    public static SucursalResponse toSucursalResponse(sucursal sucursal){
+    /*public static SucursalResponse toSucursalResponse(sucursal sucursal){
         SucursalResponse response = new SucursalResponse();
         response.setIdSucursal(sucursal.getIdSucursal());
         response.setNombre(sucursal.getNombre());
@@ -24,5 +23,5 @@ public class MappedUtil {
         response.setDescripcion(sucursal.getDescripcion());
         response.setImagenUrl(sucursal.getImagienUrl());
         return  response;
-    }
+    }*/
 }
