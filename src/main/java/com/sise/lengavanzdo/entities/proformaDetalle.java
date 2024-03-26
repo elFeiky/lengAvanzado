@@ -1,20 +1,42 @@
 package com.sise.lengavanzdo.entities;
 
+import com.sise.lengavanzdo.shared.BaseEntity;
 import lombok.Data;
-
-import java.util.Date;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-public class proformaDetalle {
+@EqualsAndHashCode(callSuper = false)
+@Entity
+@Table(name="proforma_datalles")
+public class proformaDetalle extends BaseEntity {
+    @Id
+    @Column(name = "id_proforma_detalle")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProformaDetalle;
-    private proforma Proforma;
-    //private producto Producto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_proforma")
+    private proforma proforma;
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto")
+    private producto producto;
+
+    @Column(name = "cantidad")
     private Integer cantidad;
+
+    @Column(name = "nombre_producto")
     private String nombreProducto;
+
+    @Column(name = "precio_unitario")
     private Float precioUnitario;
-    private String estadoAuditoria;
-    private String usuarioCreacion;
-    private Date fechaCreacion;
-    private String usuarioModificacion;
-    private Date fechaModificacion;
 }
