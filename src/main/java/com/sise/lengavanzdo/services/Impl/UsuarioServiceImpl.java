@@ -1,6 +1,7 @@
 package com.sise.lengavanzdo.services.Impl;
 import java.util.List;
 
+import com.sise.lengavanzdo.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sise.lengavanzdo.entities.ususario;
@@ -11,6 +12,7 @@ import com.sise.lengavanzdo.services.UsuarioService;
 public class UsuarioServiceImpl implements UsuarioService{
     @Autowired
     UsuarioRepository usuarioRepository;
+    //PasswordEncoder passwordEncoder;
 
     @Override
     public List<ususario> listarUsuarios() {
@@ -22,9 +24,9 @@ public class UsuarioServiceImpl implements UsuarioService{
         return usuarioRepository.findOneByIdUsuarioAndEstadoAuditoria(id, "1");
     }
 
-    @SuppressWarnings("null")
     @Override
     public ususario insertarUsuario(ususario usuario) {
+        usuario.setClave(PasswordUtil.encode(usuario.getClave()));
         return usuarioRepository.save(usuario);
     }
 
@@ -36,7 +38,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public void cambiarClaveUsuario(ususario usuario) {
-        usuarioRepository.cambiarClaveUsuario(usuario.getIdUsuario(),usuario.getClave());
+        usuarioRepository.cambiarClaveUsuario(usuario.getIdUsuario(),PasswordUtil.encode(usuario.getClave()));
     }
 
     @Override
